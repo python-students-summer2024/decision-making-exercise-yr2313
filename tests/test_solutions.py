@@ -64,50 +64,50 @@ class Tests:
         # test very severely underweight
         input_values = ["68", "78"]
         monkeypatch.setattr("builtins.input", lambda x: input_values.pop(0))
-        actual = solutions.get_bmi_category()
-        assert actual == "Very severely underweight"
+        actual = solutions.get_bmi_category().strip().lower()
+        assert actual == "Very severely underweight".strip().lower()
 
         # test severely underweight
         input_values = ["67", "98"]
         monkeypatch.setattr("builtins.input", lambda x: input_values.pop(0))
-        actual = solutions.get_bmi_category()
-        assert actual == "Severely underweight"
+        actual = solutions.get_bmi_category().strip().lower()
+        assert actual == "Severely underweight".strip().lower()
 
         # test underweight
         input_values = ["70", "120"]
         monkeypatch.setattr("builtins.input", lambda x: input_values.pop(0))
-        actual = solutions.get_bmi_category()
-        assert actual == "Underweight"
+        actual = solutions.get_bmi_category().strip().lower()
+        assert actual == "Underweight".strip().lower()
 
         # test normal
         input_values = ["69", "160"]
         monkeypatch.setattr("builtins.input", lambda x: input_values.pop(0))
-        actual = solutions.get_bmi_category()
-        assert actual == "Normal"
+        actual = solutions.get_bmi_category().strip().lower()
+        assert actual == "Normal".strip().lower()
 
         # test overweight
         input_values = ["73", "210"]
         monkeypatch.setattr("builtins.input", lambda x: input_values.pop(0))
-        actual = solutions.get_bmi_category()
-        assert actual == "Overweight"
+        actual = solutions.get_bmi_category().strip().lower()
+        assert actual == "Overweight".strip().lower()
 
         # test moderately obese
         input_values = ["67", "200"]
         monkeypatch.setattr("builtins.input", lambda x: input_values.pop(0))
-        actual = solutions.get_bmi_category()
-        assert actual == "Moderately obese"
+        actual = solutions.get_bmi_category().strip().lower()
+        assert actual == "Moderately obese".strip().lower()
 
         # test severely obese
         input_values = ["64", "220"]
         monkeypatch.setattr("builtins.input", lambda x: input_values.pop(0))
-        actual = solutions.get_bmi_category()
-        assert actual == "Severely obese"
+        actual = solutions.get_bmi_category().strip().lower()
+        assert actual == "Severely obese".strip().lower()
 
         # test very severely obese
         input_values = ["61", "220"]
         monkeypatch.setattr("builtins.input", lambda x: input_values.pop(0))
-        actual = solutions.get_bmi_category()
-        assert actual == "Very severely obese"
+        actual = solutions.get_bmi_category().strip().lower()
+        assert actual == "Very severely obese".strip().lower()
 
     def test_get_discount(self, monkeypatch):
         """
