@@ -25,9 +25,6 @@ def is_square():
     :returns: True if square (i.e. if equal length and height), False otherwise.
   """
   #### write your solution for this function below here. ####
-  length = input("Length (inches): ")
-  height = input("Height (inches): ")
-  return length == height
 
 def get_greatest():
   """
@@ -38,11 +35,6 @@ def get_greatest():
   :returns: the greatest of the two input numbers, as an int.
   """
   #### write your solution for this function below here. ####
-  num1 = int(input("Number #1: "))
-  num2 = int(input("Number #2: "))
-
-  if num1 >= num2: return num1
-  else: return num2
 
 def get_bmi_category():
   """
@@ -65,23 +57,6 @@ def get_bmi_category():
   """
   #### write your solution for this function below here. ####
 
-  height = input("Height (in): ")
-  weight = input("Weight (lb): ")
-
-  height = float(height)
-  weight = float(weight)
-
-  bmi = 703 * weight / math.pow(height, 2)
-
-  if (bmi < 15): return "Very severely underweight" 
-  elif (bmi < 16): return "Severely underweight"
-  elif (bmi < 18.5): return "Underweight"
-  elif (bmi < 25): return "Normal"
-  elif (bmi < 30): return "Overweight"
-  elif (bmi < 35): return "Moderately obese"
-  elif (bmi < 40): return "Severely obese"
-  else: return "Very severely obese"
-
 def get_discount():
   """
   Imagine this scenario: a surgical mask distributor will give you a 20% discount on orders of 5000 or more.
@@ -92,13 +67,6 @@ def get_discount():
     :returns: The cost of the masks, after any discounts, e.g. "$4,000" for 1000 masks.
   """
   #### write your solution for this function below here. ####
-  num = input("How many masks do you want to buy? ")
-  num = float(num)
-  total = num * 5
-  if num >= 5000:
-    total = total * 0.8 # apply discount
-  total = "$" + format(total, ",.0f") # format it
-  return total
 
 def is_leap_year():
   """
@@ -109,11 +77,4 @@ def is_leap_year():
   """
   year = get_year() # this line is given to you - the variable, year, holds the current year
   #### write your solution for this function below here. ####
-  is_leap = False # by default, assume False
-  if year % 100 == 0:
-    if year % 400 == 0:
-      is_leap = True
-  elif year % 4 == 0:
-    is_leap = True
-  return is_leap
 
