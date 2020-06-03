@@ -91,7 +91,7 @@ def get_discount():
     :returns: The cost of the masks, after any discounts, e.g. "$4,000" for 1000 masks.
   """
   #### write your solution for this function below here. ####
-  num = input("How many masks? ")
+  num = input("How many masks do you want to buy? ")
   num = float(num)
   total = num * 5
   if num >= 5000:
