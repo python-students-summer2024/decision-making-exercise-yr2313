@@ -1,3 +1,9 @@
+"""
+The code in this file is given to you.
+Run this file to call the functions in solutions.py in a way that makes sense.
+Feel free to comment out any of it in order to focus only on the functions you are currently working on.
+"""
+
 from solutions import *
 
 def main():
@@ -43,6 +49,6 @@ def main():
   # print out a farewell message
   print()
   print("--- BYE BYE! ---")
-  
+
 # call the main function
 main()

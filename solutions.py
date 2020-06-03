@@ -1,10 +1,11 @@
-import math
-import datetime
-
 """
 A few decision-making puzzles to solve using if/elif/else logic.
-Do not call any of these functions from within this file... only do that from the main.py file.
+Do not call any of these functions from within this file... only do that by running the main.py file.
+Your job is to complete the definitions of each function so that it achieves its indicated behavior.
 """
+
+import math
+import datetime
 
 def get_year():
   """

@@ -1,3 +1,8 @@
+"""
+Do not run this file directly!  It won't work.
+Run it using the Test panel in Visual Studio Code.
+"""
+
 import solutions
 
 class Tests:
