@@ -2,172 +2,158 @@ import solutions
 
 class Tests:
 
-    def test_is_sweltering(self, monkeypatch):
+    def test_is_square(self, monkeypatch):
         """
-        Check whether the function returns True for temperatures above 90, and False for temperatures 90 and below.
+        Check whether the function returns True when length and height are the same, False otherwise.
+        """
+        # test equal length / height
+        input_values = ["10", "10"]
+        monkeypatch.setattr("builtins.input", lambda x: input_values.pop(0))
+        actual = solutions.is_square()
+        assert actual == True
+
+        # test equal length / height
+        input_values = ["-10", "-10"]
+        monkeypatch.setattr("builtins.input", lambda x: input_values.pop(0))
+        actual = solutions.is_square()
+        assert actual == True
+
+        # test inequal length / height
+        input_values = ["10", "20"]
+        monkeypatch.setattr("builtins.input", lambda x: input_values.pop(0))
+        actual = solutions.is_square()
+        assert actual == False
+
+        # test inequal length / height
+        input_values = ["-10", "10"]
+        monkeypatch.setattr("builtins.input", lambda x: input_values.pop(0))
+        actual = solutions.is_square()
+        assert actual == False
+
+    def test_get_greatest(self, monkeypatch):
+        """
+        Check whether the function returns the greatest of the two input numbers.
+        """
+        # test equal numbers
+        input_values = ["10", "10"]
+        monkeypatch.setattr("builtins.input", lambda x: input_values.pop(0))
+        actual = solutions.get_greatest()
+        assert actual == 10
+
+        # test inequal numbers in ascending order
+        input_values = ["11", "33"]
+        monkeypatch.setattr("builtins.input", lambda x: input_values.pop(0))
+        actual = solutions.get_greatest()
+        assert actual == 33
+        
+        # test inequal numbers in descending order
+        input_values = ["852", "2"]
+        monkeypatch.setattr("builtins.input", lambda x: input_values.pop(0))
+        actual = solutions.get_greatest()
+        assert actual == 852
+        
+    def test_get_bmi_category(self, monkeypatch):
+        """
+        Check whether the function returns the correct BMI statistical category, based on the input height/weight.
+        """
+        # test very severely underweight
+        input_values = ["68", "78"]
+        monkeypatch.setattr("builtins.input", lambda x: input_values.pop(0))
+        actual = solutions.get_bmi_category()
+        assert actual == "Very severely underweight"
+
+        # test severely underweight
+        input_values = ["67", "98"]
+        monkeypatch.setattr("builtins.input", lambda x: input_values.pop(0))
+        actual = solutions.get_bmi_category()
+        assert actual == "Severely underweight"
+
+        # test underweight
+        input_values = ["70", "120"]
+        monkeypatch.setattr("builtins.input", lambda x: input_values.pop(0))
+        actual = solutions.get_bmi_category()
+        assert actual == "Underweight"
+
+        # test normal
+        input_values = ["69", "160"]
+        monkeypatch.setattr("builtins.input", lambda x: input_values.pop(0))
+        actual = solutions.get_bmi_category()
+        assert actual == "Normal"
+
+        # test overweight
+        input_values = ["73", "210"]
+        monkeypatch.setattr("builtins.input", lambda x: input_values.pop(0))
+        actual = solutions.get_bmi_category()
+        assert actual == "Overweight"
+
+        # test moderately obese
+        input_values = ["67", "200"]
+        monkeypatch.setattr("builtins.input", lambda x: input_values.pop(0))
+        actual = solutions.get_bmi_category()
+        assert actual == "Moderately obese"
+
+        # test severely obese
+        input_values = ["64", "220"]
+        monkeypatch.setattr("builtins.input", lambda x: input_values.pop(0))
+        actual = solutions.get_bmi_category()
+        assert actual == "Severely obese"
+
+        # test very severely obese
+        input_values = ["61", "220"]
+        monkeypatch.setattr("builtins.input", lambda x: input_values.pop(0))
+        actual = solutions.get_bmi_category()
+        assert actual == "Very severely obese"
+
+    def test_get_discount(self, monkeypatch):
+        """
+        Check that a discount is applied to orders of 500 units or more.
         """
 
-        # test with a super hot temperature
-        monkeypatch.setattr("builtins.input", lambda x: '121')
-        result = solutions.is_sweltering()
-        assert result == True
+        # test no discount for 10 units
+        monkeypatch.setattr("builtins.input", lambda x: 50)
+        expected = "$250"
+        actual = solutions.get_discount()
+        assert actual == expected
 
-        # test with the threshold temperature
-        monkeypatch.setattr("builtins.input", lambda x: '90')
-        result = solutions.is_sweltering()
-        assert result == False
+        # test no discount for 222 units
+        monkeypatch.setattr("builtins.input", lambda x: 222)
+        expected = '$1,110'
+        actual = solutions.get_discount()
+        assert actual == expected
 
-        # test with a cold temperature
-        monkeypatch.setattr("builtins.input", lambda x: '52')
-        result = solutions.is_sweltering()
-        assert result == False
+        # test discount for 500 units
+        monkeypatch.setattr("builtins.input", lambda x: 5000)
+        expected = '$20,000'
+        actual = solutions.get_discount()
+        assert actual == expected
 
-    def test_is_warm(self, capsys, monkeypatch):
+        # test discount for 712 units
+        monkeypatch.setattr("builtins.input", lambda x: 7012)
+        expected = '$28,048'
+        actual = solutions.get_discount()
+        assert actual == expected
+
+    def test_is_leap_year(self, monkeypatch):
         """
-        Check whether the function returns True for temperatures between 75 and 87, inclusive, and False for other temperatures.
-        """
-
-        # test with a super hot temperature
-        monkeypatch.setattr("builtins.input", lambda x: '121')
-        result = solutions.is_warm()
-        assert result == False
-
-        # test with the threshold temperature
-        monkeypatch.setattr("builtins.input", lambda x: '87')
-        result = solutions.is_warm()
-        assert result == True
-
-        # test with the threshold temperature
-        monkeypatch.setattr("builtins.input", lambda x: '75')
-        result = solutions.is_warm()
-        assert result == True
-
-        # test with a cold temperature
-        monkeypatch.setattr("builtins.input", lambda x: '52')
-        result = solutions.is_warm()
-        assert result == False
-
-    def test_is_humid(self, capsys, monkeypatch):
-        """
-        Check whether the function returns True if the user answers "yes", and False otherwise.
+        Check that we can determine leap years correctly.
         """
 
-        # test with a 'yes'
-        monkeypatch.setattr("builtins.input", lambda x: 'yes')
-        result = solutions.is_humid()
-        assert result == True
+        # test regular non-leap yeaar
+        monkeypatch.setattr("solutions.get_year", lambda: 1999)
+        actual = solutions.is_leap_year()
+        assert actual == False
 
-        # test with a 'no'
-        monkeypatch.setattr("builtins.input", lambda x: 'no')
-        result = solutions.is_humid()
-        assert result == False
+        # test regular leap yeaar
+        monkeypatch.setattr("solutions.get_year", lambda: 1652)
+        actual = solutions.is_leap_year()
+        assert actual == True
 
-    def test_is_inclement(self, capsys, monkeypatch):
-        """
-        Check whether the function returns True if the user answers "rain", "snow", or "sleet"; and False otherwise.
-        """
+        # test century non-leap yeaar
+        monkeypatch.setattr("solutions.get_year", lambda: 1700)
+        actual = solutions.is_leap_year()
+        assert actual == False
 
-        # test with 'rain'
-        monkeypatch.setattr("builtins.input", lambda x: 'rain')
-        result = solutions.is_inclement()
-        assert result == True
-
-        # test with 'snow'
-        monkeypatch.setattr("builtins.input", lambda x: 'snow')
-        result = solutions.is_inclement()
-        assert result == True
-
-        # test with 'sleet'
-        monkeypatch.setattr("builtins.input", lambda x: 'sleet')
-        result = solutions.is_inclement()
-        assert result == True
-
-        # test with something else
-        monkeypatch.setattr("builtins.input", lambda x: 'foo')
-        result = solutions.is_inclement()
-        assert result == False
-
-        # test with something else
-        monkeypatch.setattr("builtins.input", lambda x: 'bar')
-        result = solutions.is_inclement()
-        assert result == False
-
-    def test_is_typical_new_york_summer(self, capsys, monkeypatch):
-        """
-        Check whether the function returns True if the is_sweltering() function returns True and the is_humid() function returns True;  False otherwise.
-        """
-        # test with a hot temperature and humidity
-        monkeypatch.setattr("solutions.is_sweltering", lambda: True)
-        monkeypatch.setattr("solutions.is_humid", lambda: True)
-        result = solutions.is_typical_new_york_summer()
-        assert result == True
-
-        # test with a hot temperature but no humidity
-        monkeypatch.setattr("solutions.is_sweltering", lambda: True)
-        monkeypatch.setattr("solutions.is_humid", lambda: False)
-        result = solutions.is_typical_new_york_summer()
-        assert result == False
-
-        # test with a cool temperature and humidity
-        monkeypatch.setattr("solutions.is_sweltering", lambda: False)
-        monkeypatch.setattr("solutions.is_humid", lambda: True)
-        result = solutions.is_typical_new_york_summer()
-        assert result == False
-
-        # test with a cool temperature and no humidity
-        monkeypatch.setattr("solutions.is_sweltering", lambda: False)
-        monkeypatch.setattr("solutions.is_humid", lambda: False)
-        result = solutions.is_typical_new_york_summer()
-        assert result == False
-
-    def test_is_cool_and_nice(self, capsys, monkeypatch):
-        """
-        Check whether the function returns True if the is_sweltering() function returns False and the is_humid() function returns False;  False otherwise.
-        """
-        # test with hot, humid, warm, and inclement
-        monkeypatch.setattr("solutions.is_sweltering", lambda: True)
-        monkeypatch.setattr("solutions.is_humid", lambda: True)
-        monkeypatch.setattr("solutions.is_warm", lambda: True)
-        monkeypatch.setattr("solutions.is_inclement", lambda: True)
-        result = solutions.is_cool_and_nice()
-        assert result == False
-
-        # test with hot, humid, not warm, and not inclement
-        monkeypatch.setattr("solutions.is_sweltering", lambda: True)
-        monkeypatch.setattr("solutions.is_humid", lambda: False)
-        monkeypatch.setattr("solutions.is_warm", lambda: False)
-        monkeypatch.setattr("solutions.is_inclement", lambda: False)
-        result = solutions.is_cool_and_nice()
-        assert result == False
-
-        # test with not hot, humid, not warm, and not inclement
-        monkeypatch.setattr("solutions.is_sweltering", lambda: False)
-        monkeypatch.setattr("solutions.is_humid", lambda: True)
-        monkeypatch.setattr("solutions.is_warm", lambda: False)
-        monkeypatch.setattr("solutions.is_inclement", lambda: False)
-        result = solutions.is_cool_and_nice()
-        assert result == False
-
-        # test with not hot, not humid, warm, and not inclement
-        monkeypatch.setattr("solutions.is_sweltering", lambda: False)
-        monkeypatch.setattr("solutions.is_humid", lambda: False)
-        monkeypatch.setattr("solutions.is_warm", lambda: True)
-        monkeypatch.setattr("solutions.is_inclement", lambda: False)
-        result = solutions.is_cool_and_nice()
-        assert result == False
-
-        # test with not hot, not humid, not warm, and inclement
-        monkeypatch.setattr("solutions.is_sweltering", lambda: False)
-        monkeypatch.setattr("solutions.is_humid", lambda: False)
-        monkeypatch.setattr("solutions.is_warm", lambda: True)
-        monkeypatch.setattr("solutions.is_inclement", lambda: True)
-        result = solutions.is_cool_and_nice()
-        assert result == False
-
-        # test with not hot, not humid, not warm, and not inclement
-        monkeypatch.setattr("solutions.is_sweltering", lambda: False)
-        monkeypatch.setattr("solutions.is_humid", lambda: False)
-        monkeypatch.setattr("solutions.is_warm", lambda: False)
-        monkeypatch.setattr("solutions.is_inclement", lambda: False)
-        result = solutions.is_cool_and_nice()
-        assert result == True
+        # test century leap yeaar
+        monkeypatch.setattr("solutions.get_year", lambda: 2000)
+        actual = solutions.is_leap_year()
+        assert actual == True
