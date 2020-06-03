@@ -40,5 +40,9 @@ def main():
   else:
     print("Sorry.... {} is not a leap year.".format(this_year))
 
+  # print out a farewell message
+  print()
+  print("--- BYE BYE! ---")
+  
 # call the main function
 main()
