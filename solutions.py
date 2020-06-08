@@ -50,7 +50,7 @@ def get_bmi_category():
   - Normal (18.5 <= BMI < 25)
   - Overweight (25 <= BMI < 30)
   - Moderately obese (30 <= BMI < 35)
-  - Severely obese (25 <= BMI < 40)
+  - Severely obese (35 <= BMI < 40)
   - Very severely obese (BMI >= 40)
 
     :returns: The name of the BMI statistical category, based on the inputted height and weight.
