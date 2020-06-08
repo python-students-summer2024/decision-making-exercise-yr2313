@@ -38,7 +38,7 @@ def get_greatest():
 
 def get_bmi_category():
   """
-  Asks the user to enter their height (in inches) and weight (in pounds) and then returns the user's BMI statistical category.
+  Asks the user to enter their height (in inches) and weight (in pounds), in that order, and then returns the user's BMI statistical category.
   Users can enter either integers or floating point numbers.
 
   The BMI formula was developed in the 1830s, and is still widely used today in public health policy, medical practice, and legislation.
