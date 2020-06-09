@@ -111,7 +111,7 @@ class Tests:
 
     def test_get_discount(self, monkeypatch):
         """
-        Check that a discount is applied to orders of 500 units or more.
+        Check that a discount is applied to orders of 5,000 units or more.
         """
 
         # test no discount for 10 units
