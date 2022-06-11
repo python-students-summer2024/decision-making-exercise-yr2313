@@ -12,153 +12,162 @@ class Tests:
         Check whether the function returns True when length and height are the same, False otherwise.
         """
         # test equal length / height
-        input_values = ["10", "10"]
-        monkeypatch.setattr("builtins.input", lambda x: input_values.pop(0))
+        inputs = ["10", "10"]
+        mock_values = inputs.copy()
+        monkeypatch.setattr("builtins.input", lambda x: inputs.pop(0))
         actual = solutions.is_square()
-        assert actual == True
+        expected = True
+        assert actual == expected, f'Expected the is_square() function to return {expected} when the user input the values, {mock_values}; instead, it returned {actual}.'
 
         # test equal length / height
-        input_values = ["-10", "-10"]
-        monkeypatch.setattr("builtins.input", lambda x: input_values.pop(0))
+        inputs = ["-10", "-10"]
+        mock_values = inputs.copy()
+        monkeypatch.setattr("builtins.input", lambda x: inputs.pop(0))
         actual = solutions.is_square()
-        assert actual == True
+        expected = True
+        assert actual == expected, f'Expected the is_square() function to return {expected} when the user input the values, {mock_values}; instead, it returned {actual}.'
 
         # test inequal length / height
-        input_values = ["10", "20"]
-        monkeypatch.setattr("builtins.input", lambda x: input_values.pop(0))
+        inputs = ["10", "20"]
+        mock_values = inputs.copy()
+        monkeypatch.setattr("builtins.input", lambda x: inputs.pop(0))
         actual = solutions.is_square()
-        assert actual == False
+        expected = False
+        assert actual == expected, f'Expected the is_square() function to return {expected} when the user input the values, {mock_values}; instead, it returned {actual}.'
 
         # test inequal length / height
-        input_values = ["-10", "10"]
-        monkeypatch.setattr("builtins.input", lambda x: input_values.pop(0))
+        inputs = ["-10", "10"]
+        mock_values = inputs.copy()
+        monkeypatch.setattr("builtins.input", lambda x: inputs.pop(0))
         actual = solutions.is_square()
-        assert actual == False
+        expected = False
+        assert actual == expected, f'Expected the is_square() function to return {expected} when the user input the values, {mock_values}; instead, it returned {actual}.'
 
     def test_get_greatest(self, monkeypatch):
         """
         Check whether the function returns the greatest of the two input numbers.
         """
         # test equal numbers
-        input_values = ["10", "10"]
-        monkeypatch.setattr("builtins.input", lambda x: input_values.pop(0))
+        inputs = ["10", "10"]
+        mock_values = inputs.copy()
+        monkeypatch.setattr("builtins.input", lambda x: inputs.pop(0))
         actual = solutions.get_greatest()
-        assert actual == 10
+        expected = 10
+        assert actual == expected, f'Expected the get_greatest() function to return {expected} when the user input the values, {mock_values}; instead, it returned {actual}.'
 
         # test inequal numbers in ascending order
-        input_values = ["11", "33"]
-        monkeypatch.setattr("builtins.input", lambda x: input_values.pop(0))
+        inputs = ["11", "33"]
+        mock_values = inputs.copy()
+        monkeypatch.setattr("builtins.input", lambda x: inputs.pop(0))
         actual = solutions.get_greatest()
-        assert actual == 33
+        expected = 33
+        assert actual == expected, f'Expected the get_greatest() function to return {expected} when the user input the values, {mock_values}; instead, it returned {actual}.'
         
         # test inequal numbers in descending order
-        input_values = ["852", "2"]
-        monkeypatch.setattr("builtins.input", lambda x: input_values.pop(0))
+        inputs = ["852", "2"]
+        mock_values = inputs.copy()
+        monkeypatch.setattr("builtins.input", lambda x: inputs.pop(0))
         actual = solutions.get_greatest()
-        assert actual == 852
+        expected = 852
+        assert actual == expected, f'Expected the get_greatest() function to return {expected} when the user input the values, {mock_values}; instead, it returned {actual}.'
         
     def test_get_bmi_category(self, monkeypatch):
         """
         Check whether the function returns the correct BMI statistical category, based on the input height/weight.
         """
         # test very severely underweight
-        input_values = ["68", "78"] #bmi 12
-        monkeypatch.setattr("builtins.input", lambda x: input_values.pop(0))
-        actual = solutions.get_bmi_category().strip().lower()
-        assert actual == "Very severely underweight".strip().lower()
+        inputs = ["68", "78"] #bmi 12
+        mock_values = inputs.copy()
+        monkeypatch.setattr("builtins.input", lambda x: inputs.pop(0))
+        actual = solutions.get_bmi_category().strip().capitalize()
+        expected = "Very severely underweight".strip().capitalize()
+        assert actual == expected, f'Expected the get_bmi_category() function to return {expected} when the user input the values, {mock_values}; instead, it returned {actual}.'
 
         # test severely underweight
-        input_values = ["67", "98"] #bmi 15
-        monkeypatch.setattr("builtins.input", lambda x: input_values.pop(0))
-        actual = solutions.get_bmi_category().strip().lower()
-        assert actual == "Severely underweight".strip().lower()
+        inputs = ["67", "98"] #bmi 15
+        mock_values = inputs.copy()
+        monkeypatch.setattr("builtins.input", lambda x: inputs.pop(0))
+        actual = solutions.get_bmi_category().strip().capitalize()
+        expected = "Severely underweight".strip().capitalize()
+        assert actual == expected, f'Expected the get_bmi_category() function to return {expected} when the user input the values, {mock_values}; instead, it returned {actual}.'
 
         # test underweight
-        input_values = ["70", "120"] #bmi 17
-        monkeypatch.setattr("builtins.input", lambda x: input_values.pop(0))
-        actual = solutions.get_bmi_category().strip().lower()
-        assert actual == "Underweight".strip().lower()
+        inputs = ["70", "120"] #bmi 17
+        mock_values = inputs.copy()
+        monkeypatch.setattr("builtins.input", lambda x: inputs.pop(0))
+        actual = solutions.get_bmi_category().strip().capitalize()
+        expected = "Underweight".strip().capitalize()
+        assert actual == expected, f'Expected the get_bmi_category() function to return {expected} when the user input the values, {mock_values}; instead, it returned {actual}.'
 
         # test normal
-        input_values = ["69", "160"] #bmi 24
-        monkeypatch.setattr("builtins.input", lambda x: input_values.pop(0))
-        actual = solutions.get_bmi_category().strip().lower()
-        assert actual == "Normal".strip().lower()
+        inputs = ["69", "160"] #bmi 24
+        mock_values = inputs.copy()
+        monkeypatch.setattr("builtins.input", lambda x: inputs.pop(0))
+        actual = solutions.get_bmi_category().strip().capitalize()
+        expected = "Normal".strip().capitalize()
+        assert actual == expected, f'Expected the get_bmi_category() function to return {expected} when the user input the values, {mock_values}; instead, it returned {actual}.'
 
         # test overweight
-        input_values = ["73", "210"] #bmi 28
-        monkeypatch.setattr("builtins.input", lambda x: input_values.pop(0))
-        actual = solutions.get_bmi_category().strip().lower()
-        assert actual == "Overweight".strip().lower()
+        inputs = ["73", "210"] #bmi 28
+        mock_values = inputs.copy()
+        monkeypatch.setattr("builtins.input", lambda x: inputs.pop(0))
+        actual = solutions.get_bmi_category().strip().capitalize()
+        expected = "Overweight".strip().capitalize()
+        assert actual == expected, f'Expected the get_bmi_category() function to return {expected} when the user input the values, {mock_values}; instead, it returned {actual}.'
 
         # test moderately obese
-        input_values = ["67", "200"] #bmi 31
-        monkeypatch.setattr("builtins.input", lambda x: input_values.pop(0))
-        actual = solutions.get_bmi_category().strip().lower()
-        assert actual == "Moderately obese".strip().lower()
+        inputs = ["67", "200"] #bmi 31
+        mock_values = inputs.copy()
+        monkeypatch.setattr("builtins.input", lambda x: inputs.pop(0))
+        actual = solutions.get_bmi_category().strip().capitalize()
+        expected = "Moderately obese".strip().capitalize()
+        assert actual == expected, f'Expected the get_bmi_category() function to return {expected} when the user input the values, {mock_values}; instead, it returned {actual}.'
 
         # test severely obese
-        input_values = ["64", "220"] #bmi 36
-        monkeypatch.setattr("builtins.input", lambda x: input_values.pop(0))
-        actual = solutions.get_bmi_category().strip().lower()
-        assert actual == "Severely obese".strip().lower()
+        inputs = ["64", "220"] #bmi 36
+        mock_values = inputs.copy()
+        monkeypatch.setattr("builtins.input", lambda x: inputs.pop(0))
+        actual = solutions.get_bmi_category().strip().capitalize()
+        expected = "Severely obese".strip().capitalize()
+        assert actual == expected, f'Expected the get_bmi_category() function to return {expected} when the user input the values, {mock_values}; instead, it returned {actual}.'
 
         # test very severely obese
-        input_values = ["61", "220"] #bmi 42
-        monkeypatch.setattr("builtins.input", lambda x: input_values.pop(0))
-        actual = solutions.get_bmi_category().strip().lower()
-        assert actual == "Very severely obese".strip().lower()
+        inputs = ["61", "220"] #bmi 42
+        mock_values = inputs.copy()
+        monkeypatch.setattr("builtins.input", lambda x: inputs.pop(0))
+        actual = solutions.get_bmi_category().strip().capitalize()
+        expected = "Very severely obese".strip().capitalize()
+        assert actual == expected, f'Expected the get_bmi_category() function to return {expected} when the user input the values, {mock_values}; instead, it returned {actual}.'
 
     def test_get_discount(self, monkeypatch):
         """
         Check that a discount is applied to orders of 5,000 units or more.
         """
 
-        # test no discount for 10 units
-        monkeypatch.setattr("builtins.input", lambda x: 50)
-        expected = "$250"
-        actual = solutions.get_discount()
-        assert actual == expected
+        inputs = [50, 222, 5000, 7012]        
+        mock_values = inputs.copy()
+        expecteds = ["$250", '$1,110', '$20,000', '$28,048']
+        monkeypatch.setattr("builtins.input", lambda x: inputs.pop(0))
 
-        # test no discount for 222 units
-        monkeypatch.setattr("builtins.input", lambda x: 222)
-        expected = '$1,110'
-        actual = solutions.get_discount()
-        assert actual == expected
+        for i, mock_data in enumerate(mock_values):
+            expected = expecteds[i]
 
-        # test discount for 500 units
-        monkeypatch.setattr("builtins.input", lambda x: 5000)
-        expected = '$20,000'
-        actual = solutions.get_discount()
-        assert actual == expected
+            actual = solutions.get_discount()
+            assert actual == expected, f'Expected the get_discount() function to return {expected} when the user input the value, "{mock_data}"; instead, it returned {actual}.'
 
-        # test discount for 712 units
-        monkeypatch.setattr("builtins.input", lambda x: 7012)
-        expected = '$28,048'
-        actual = solutions.get_discount()
-        assert actual == expected
 
     def test_is_leap_year(self, monkeypatch):
         """
         Check that we can determine leap years correctly.
         """
 
-        # test regular non-leap yeaar
-        monkeypatch.setattr("solutions.get_year", lambda: 1999)
-        actual = solutions.is_leap_year()
-        assert actual == False
+        inputs = [1999, 1652, 1701, 2000] # regular non-leap, regular leap, century non-leap, century leap
+        mock_values = inputs.copy()
+        expecteds = [False, True, False, True]
+        monkeypatch.setattr("solutions.get_year", lambda: inputs.pop(0))
 
-        # test regular leap yeaar
-        monkeypatch.setattr("solutions.get_year", lambda: 1652)
-        actual = solutions.is_leap_year()
-        assert actual == True
+        for i, mock_data in enumerate(mock_values):
+            expected = expecteds[i]
 
-        # test century non-leap yeaar
-        monkeypatch.setattr("solutions.get_year", lambda: 1701)
-        actual = solutions.is_leap_year()
-        assert actual == False
-
-        # test century leap yeaar
-        monkeypatch.setattr("solutions.get_year", lambda: 2000)
-        actual = solutions.is_leap_year()
-        assert actual == True
+            actual = solutions.is_leap_year()
+            assert actual == expected, f'Expected the is_leap_year() function to return {expected} for the year {mock_data}; instead, it returned {actual}.'

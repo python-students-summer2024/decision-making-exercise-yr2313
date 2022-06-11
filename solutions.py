@@ -25,7 +25,7 @@ def is_square():
     :returns: True if square (i.e. if equal length and height), False otherwise.
   """
   #### write your solution for this function below here. ####
-
+  
 def get_greatest():
   """
   Asks the user for two integers, and returns the number that is greatest, as an int.
